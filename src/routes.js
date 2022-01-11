@@ -1,6 +1,6 @@
 import App from "./App";
 import Home from "./pages/Home";
-import Sobre from "./pages/Sobre";
+import About from "./pages/About";
 
 export const routes = [
     {
@@ -13,7 +13,7 @@ export const routes = [
         //     },
         //     {
         //         path: '/sobre',
-        //         element: <Sobre />
+        //         element: <About />
         //     }
         // ]
     },
