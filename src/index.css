@@ -10,6 +10,16 @@ html, body {
     height: 100vh;
 }
 
+h2 {
+    font-size: 60px;
+    font-weight: 700;
+}
+
+p {
+    font-size: 22px;
+    font-weight: 200;
+}
+
 body {
     font-family: "Roboto";
     background-color: #202529;
