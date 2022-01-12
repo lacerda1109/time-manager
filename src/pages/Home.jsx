@@ -21,7 +21,9 @@ export default function Home() {
                     <h1>Time Manager</h1>
                     <p className="paragraph">Uma simples, rápida e minimalista aplicação web para gerenciar seu tempo. Atinja um dia mais produtivo.</p>
                     <div className="buttons">
-                        <Button theme="default" text="Começar" />
+                        <Link to="/app/">
+                            <Button theme="default" text="Começar" />
+                        </Link>
                         <Link to="/sobre">
                             <Button theme="secondary" text="Saiba mais" />
                         </Link>

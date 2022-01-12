@@ -25,19 +25,19 @@ export default function IndexNavbar(props) {
         <div style={{height: '100vh'}}>
             <div style={{ borderBottom: `3px solid ${palette.defaultColor}` }}>
                 <div style={{ ...navbarStyle }}>
-                    <Link to="/"> {/* ÍCONE INICIAL */}
+                    <Link to="/">
                         <AiFillHome className="navbarIcon" />
                     </Link>
 
                     {props.nav ? (
-                        <div style={{display: 'flex', gap: '15px'}}> {/* LINKS DO MEIO */}
-                            <Link to=""><NavButton text="Timer" /></Link>
-                            <Link to=""><NavButton text="Cronômetro" /></Link>
-                            <Link to=""><NavButton text="Alarme" /></Link>
+                        <div style={{display: 'flex', gap: '15px'}}>
+                            <NavButton path="/app/" text="Timer" />
+                            <NavButton path="cronometro" text="Cronômetro" />
+                            <NavButton path="alarme" text="Alarme" />
                         </div>
                     ) : null}
 
-                    <div style={{ display: "flex", gap: "20px" }}> {/* ÍCONES FINAIS */}
+                    <div style={{ display: "flex", gap: "20px" }}>
                         <a
                             href="https://github.com/lacerda1109"
                             target="_blank"
