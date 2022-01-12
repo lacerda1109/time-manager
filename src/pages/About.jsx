@@ -3,7 +3,7 @@ import Page from '../components/Page'
 export default function About() {
     return (
         <Page>
-            <div style={{ maxWidth: '800px' }}>
+            <div style={{ maxWidth: '800px', padding: '0 20px' }}>
                 <div style={{display: 'flex', flexDirection: 'column', gap: '35px', marginBottom: '85px'}}>
                     <h2>Sobre o projeto</h2>
                     <p>Uma aplicação web para administrar seu tempo. Este projeto foi feito em React JS, com o propósito de testar conhecimentos e ajudar as pessoas. Enjoy!</p>

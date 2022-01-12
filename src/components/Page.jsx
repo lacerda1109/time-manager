@@ -5,8 +5,8 @@ export default function Page(props) {
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                height: 'calc(100vh - 75px)',
-                color: '#fff'
+                height: 'calc(100vh - 76px)',
+                color: '#fff',
             }}
         >
             {props.children}

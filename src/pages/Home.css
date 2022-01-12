@@ -3,4 +3,27 @@
     background-position: center center;
     background-size: contain;
     background-repeat: no-repeat;
+    padding: 0 20px;
+}
+
+.paragraph {
+    margin: 40px 0;
+    max-width: 422px;
+}
+
+.buttons {
+    display: flex;
+    gap: 15px;
+}
+
+@media screen and (max-width: 400px) {
+    .buttons {
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .paragraph {
+        margin: 15px 0;
+    }
 }

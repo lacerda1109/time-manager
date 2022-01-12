@@ -1,5 +1,6 @@
 export const palette = {
     defaultColor: '#1BC6B4',
+    bgColor: '#202529',
     default: {
         normal: {
             background: "#1BC6B4",
