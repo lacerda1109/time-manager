@@ -22,7 +22,7 @@ export default function IndexNavbar(props) {
     };
 
     return (
-        <>
+        <div style={{height: '100vh'}}>
             <div style={{ borderBottom: `3px solid ${palette.defaultColor}` }}>
                 <div style={{ ...navbarStyle }}>
                     <Link to="/"> {/* ÍCONE INICIAL */}
@@ -57,6 +57,6 @@ export default function IndexNavbar(props) {
                 </div>
             </div>
             <Outlet />
-        </>
+        </div>
     );
 }

@@ -1,6 +1,9 @@
+import './Page.css'
+
 export default function Page(props) {
     return (
         <div
+            className="Page"
             style={{
                 display: 'flex',
                 justifyContent: 'center',

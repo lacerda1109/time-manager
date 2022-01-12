@@ -1,0 +1,6 @@
+@media screen and (max-width: 400px) {
+    .Page {
+        height: 100% !important;
+        padding: 50px 0;
+    }
+}
