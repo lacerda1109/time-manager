@@ -12,7 +12,7 @@ ReactDOM.render(
     <React.StrictMode>
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<IndexNavbar />}>
+                <Route path="/" element={<IndexNavbar nav />}>
                     <Route index element={<Home />} />
                     <Route path="/sobre" element={<About />} />
                 </Route>

@@ -8,6 +8,7 @@ import {
 } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import "./IndexNavbar.css";
+import NavButton from './NavButton'
 
 export default function IndexNavbar(props) {
     let navbarStyle = {
@@ -16,7 +17,8 @@ export default function IndexNavbar(props) {
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
-        padding: "20px 20px",
+        padding: "0px 20px",
+        height: '77px'
     };
 
     return (
@@ -27,11 +29,13 @@ export default function IndexNavbar(props) {
                         <AiFillHome className="navbarIcon" />
                     </Link>
 
-                    <div> {/* LINKS DO MEIO */}
-                        <Link to=""></Link>
-                        <Link to=""></Link>
-                        <Link to=""></Link>
-                    </div>
+                    {props.nav ? (
+                        <div style={{display: 'flex', gap: '15px'}}> {/* LINKS DO MEIO */}
+                            <Link to=""><NavButton text="Timer" /></Link>
+                            <Link to=""><NavButton text="Cronômetro" /></Link>
+                            <Link to=""><NavButton text="Alarme" /></Link>
+                        </div>
+                    ) : null}
 
                     <div style={{ display: "flex", gap: "20px" }}> {/* ÍCONES FINAIS */}
                         <a

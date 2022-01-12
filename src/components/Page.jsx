@@ -5,7 +5,7 @@ export default function Page(props) {
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                height: 'calc(100vh - 76px)',
+                height: 'calc(100vh - 80px)',
                 color: '#fff',
             }}
         >
