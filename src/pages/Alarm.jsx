@@ -10,6 +10,7 @@ import {
 import { palette } from '../theme/palette'
 
 export default function Alarm(props) {
+    // FUNÇÃO DE FORMATAR NÚMEROS ---------------------------------------------------------------------------
     function formatNumber(number) {
         return number < 10 ? '0' + number : number
     }
@@ -100,8 +101,6 @@ export default function Alarm(props) {
 
     // MODAL CONFIG -----------------------------------------------------------------------------------------
     const [openModal, setOpenModal] = useState(false)
-    const [configHour, setConfigHour] = useState('00')
-    const [configMinute, setConfigMinute] = useState('00')
     const [configTitle, setConfigTitle] = useState('')
 
     const [selectHour, setSelectHour] = useState(0)
@@ -147,10 +146,11 @@ export default function Alarm(props) {
                                     borderRadius: '4px 0 0 4px',
                                     cursor: 'pointer'
                                 }}
+                                onClick={() => setSelectHour(selectHour - 1)}
                             ><IoIosArrowBack /></div>
                             <select
                                 style={{
-                                    width: '50px'
+                                    width: '55px'
                                 }}
                                 value={selectHour}
                                 onChange={(e) => {
@@ -167,6 +167,7 @@ export default function Alarm(props) {
                                     borderRadius: '0 4px 4px 0',
                                     cursor: 'pointer'
                                 }}
+                                onClick={() => setSelectHour(selectHour + 1)}
                             ><IoIosArrowForward /></div>
                         </div>
                     </div>
@@ -185,10 +186,11 @@ export default function Alarm(props) {
                                     borderRadius: '4px 0 0 4px',
                                     cursor: 'pointer'
                                 }}
+                                onClick={() => setSelectMinute(selectMinute - 1)}
                             ><IoIosArrowBack /></div>
                             <select
                                 style={{
-                                    width: '50px'
+                                    width: '55px'
                                 }}
                                 value={selectMinute}
                                 onChange={(e) => {
@@ -205,6 +207,7 @@ export default function Alarm(props) {
                                     borderRadius: '0 4px 4px 0',
                                     cursor: 'pointer'
                                 }}
+                                onClick={() => setSelectMinute(selectMinute + 1)}
                             ><IoIosArrowForward /></div>
                         </div>
                     </div>
