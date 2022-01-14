@@ -16,12 +16,12 @@ html, body {
 
 h1 {
     font-size: 90px;
-    font-weight: 900;
+    font-weight: 800;
 }
 
 h2 {
-    font-size: 60px;
-    font-weight: 700;
+    font-size: 50px;
+    font-weight: 600;
 }
 
 p {
@@ -29,10 +29,15 @@ p {
     font-weight: 200;
 }
 
-input {
+label {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+input[type=text] {
     border: 0;
     padding: 5px;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 input:focus {

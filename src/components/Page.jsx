@@ -8,7 +8,7 @@ export default function Page(props) {
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                height: 'calc(100vh - 80px)',
+                height: 'calc(100vh - 67px)',
                 color: '#fff',
             }}
         >

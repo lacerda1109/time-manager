@@ -4,10 +4,10 @@ import { palette } from '../theme/palette'
 export default function Button(props) {
     let buttonStyle = {
         fontSize: '18px',
-        fontWeight: '700',
-        padding: '10px 30px',
+        fontWeight: '400',
+        padding: '8px 30px',
         border: 0,
-        borderRadius: '6px',
+        borderRadius: '4px',
         cursor: 'pointer',
         transition: 'background-color .5s',
         backgroundColor: palette[props.theme].normal.background,

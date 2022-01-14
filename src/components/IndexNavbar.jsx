@@ -18,12 +18,12 @@ export default function IndexNavbar(props) {
         justifyContent: "space-between",
         alignItems: "center",
         padding: "0px 20px",
-        height: '77px'
+        height: '65px'
     };
 
     return (
         <div style={{height: '100vh'}}>
-            <div style={{ borderBottom: `3px solid ${palette.defaultColor}` }}>
+            <div style={{ borderBottom: `2px solid ${palette.defaultColor}` }}>
                 <div style={{ ...navbarStyle }}>
                     <Link to="/">
                         <AiFillHome className="navbarIcon" />

@@ -108,7 +108,7 @@ export default function Alarm(props) {
                 style={{
                     display: 'flex',
                     flexDirection: 'column',
-                    gap: '30px',
+                    gap: '20px',
                     alignItems: 'center'
                 }}
             >
@@ -191,10 +191,13 @@ export default function Alarm(props) {
                         </div>
                     </div>
                 </div>
-                <div /* TITULO */>
+                <div /* TITULO */
+                    style={{width: '100%'}}
+                >
                     <label>Adicione um título</label>
                     <div style={{marginTop: '10px'}}>
                         <input
+                            style={{ borderRadius: '4px', width: '100%' }}
                             type="text"
                             value={configTitle}
                             onChange={(e) => setConfigTitle(e.target.value)}

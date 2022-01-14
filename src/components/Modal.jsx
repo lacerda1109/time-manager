@@ -31,13 +31,12 @@ export default function Modal(props) {
             <div
                 style={{
                     width: '400px',
-                    // height: '200px',
                     backgroundColor: palette.bgSecondaryColor
                 }}
             >
                 <div // MODAL HEADER
                     style={{
-                        padding: '8px 25px',
+                        padding: '12px 25px',
                         backgroundColor: palette.secondaryColor,
                         borderBottom: `2px solid ${palette.defaultColor}`,
                         display: 'flex',
@@ -45,7 +44,7 @@ export default function Modal(props) {
                         alignItems: 'center'
                     }}
                 >
-                    <p>{props.headerTitle}</p>
+                    <label>{props.headerTitle}</label>
                     <AiOutlineClose style={{ cursor:'pointer' }} onClick={() => props.setOpenModal(false)} />
                 </div>
                 <div // MODAL BODY
