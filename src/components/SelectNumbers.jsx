@@ -3,12 +3,13 @@ import {
     IoIosArrowBack,
     IoIosArrowForward
 } from 'react-icons/io'
+import './SelectNumbers.css'
 
 export default function SelectNumbers(props) {
     function formatNumber(number) {
         return number < 10 ? '0' + number : number
     }
-    
+
     return (
         <div
             style={{ textAlign: 'center' }}
@@ -18,6 +19,7 @@ export default function SelectNumbers(props) {
                 style={{ display: 'flex', marginTop: '10px' }}
             >
                 <div
+                    className="button"
                     style={{
                         backgroundColor: palette.secondaryColor,
                         display: 'flex',
@@ -25,7 +27,11 @@ export default function SelectNumbers(props) {
                         borderRadius: '4px 0 0 4px',
                         cursor: 'pointer'
                     }}
-                    onClick={() => props.setState(props.state - 1)}
+                    onClick={() => {
+                        if (!props.state == 0) {
+                            props.setState(props.state - 1)
+                        }
+                    }}
                 ><IoIosArrowBack /></div>
                 <select
                     style={{
@@ -39,6 +45,7 @@ export default function SelectNumbers(props) {
                     {(props.options).map((el, i) => (<option key={i} value={el}>{formatNumber(el)}</option>))}
                 </select>
                 <div
+                    className="button"
                     style={{
                         backgroundColor: palette.secondaryColor,
                         display: 'flex',
@@ -46,7 +53,11 @@ export default function SelectNumbers(props) {
                         borderRadius: '0 4px 4px 0',
                         cursor: 'pointer'
                     }}
-                    onClick={() => props.setState(props.state + 1)}
+                    onClick={() => {
+                        if (!(props.state == props.options[props.options.length - 1])) {
+                            props.setState(props.state + 1)
+                        }
+                    }}
                 ><IoIosArrowForward /></div>
             </div>
         </div>
