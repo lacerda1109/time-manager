@@ -14,6 +14,7 @@ export default function Alarm(props) {
         return number < 10 ? '0' + number : number
     }
 
+    // CONFIGURAÇÃO DE EXIBIÇÃO DA DATA ---------------------------------------------------------------------
     let date = new Date()
     let weekDay = date.getDay()
     let monthDay = date.getDate()
@@ -83,6 +84,7 @@ export default function Alarm(props) {
             break
     }
 
+    // FUNCIONAMENTO DO RELÓGIO -----------------------------------------------------------------------------
     const [hour, setHour] = useState(date.getHours())
     const [minutes, setMinutes] = useState(date.getMinutes())
     const [seconds, setSeconds] = useState(date.getSeconds())
@@ -96,11 +98,23 @@ export default function Alarm(props) {
         }, 1000)
     },[])
 
-    // MODAL CONFIG
+    // MODAL CONFIG -----------------------------------------------------------------------------------------
     const [openModal, setOpenModal] = useState(false)
-    const [configHour, setConfigHour] = useState('')
-    const [configMinute, setConfigMinute] = useState('')
+    const [configHour, setConfigHour] = useState('00')
+    const [configMinute, setConfigMinute] = useState('00')
     const [configTitle, setConfigTitle] = useState('')
+
+    const [selectHour, setSelectHour] = useState(0)
+    const [selectMinute, setSelectMinute] = useState(0)
+
+    let arrHour = []
+    for (let x = 0 ; x < 24 ; x++) {
+        arrHour.push(x)
+    }
+    let arrMin = []
+    for (let x = 0 ; x < 60 ; x++) {
+        arrMin.push(x)
+    }
 
     const modalBody = (
         <div>
@@ -122,7 +136,7 @@ export default function Alarm(props) {
                         style={{ textAlign: 'center' }}
                     >
                         <label>H</label>
-                        <div /* Input */
+                        <div
                             style={{ display: 'flex', marginTop: '10px' }}
                         >
                             <div
@@ -134,15 +148,17 @@ export default function Alarm(props) {
                                     cursor: 'pointer'
                                 }}
                             ><IoIosArrowBack /></div>
-                            <input
-                                type="text"
-                                value={configHour}
-                                onChange={(e) => setConfigHour(e.target.value)}
+                            <select
                                 style={{
-                                    textAlign: 'center',
                                     width: '50px'
                                 }}
-                            />
+                                value={selectHour}
+                                onChange={(e) => {
+                                    setSelectHour(Number(e.target.value))
+                                }}
+                            >
+                                {arrHour.map((el, i) => (<option key={i} value={el}>{formatNumber(el)}</option>))}
+                            </select>
                             <div
                                 style={{
                                     backgroundColor: palette.secondaryColor,
@@ -154,11 +170,11 @@ export default function Alarm(props) {
                             ><IoIosArrowForward /></div>
                         </div>
                     </div>
-                    <div /* Min */
+                    <div /* Minuto */
                         style={{ textAlign: 'center' }}
                     >
                         <label>M</label>
-                        <div /* Input */
+                        <div
                             style={{ display: 'flex', marginTop: '10px' }}
                         >
                             <div
@@ -170,15 +186,17 @@ export default function Alarm(props) {
                                     cursor: 'pointer'
                                 }}
                             ><IoIosArrowBack /></div>
-                            <input
-                                type="text"
-                                value={configMinute}
-                                onChange={(e) => setConfigMinute(e.target.value)}
+                            <select
                                 style={{
-                                    textAlign: 'center',
                                     width: '50px'
                                 }}
-                            />
+                                value={selectMinute}
+                                onChange={(e) => {
+                                    setSelectMinute(Number(e.target.value))
+                                }}
+                            >
+                                {arrMin.map((el, i) => (<option key={i} value={el}>{formatNumber(el)}</option>))}
+                            </select>
                             <div
                                 style={{
                                     backgroundColor: palette.secondaryColor,
@@ -216,7 +234,52 @@ export default function Alarm(props) {
                 <div onClick={() => setOpenModal(false)}>
                     <Button theme="secondary" text="Cancelar" />
                 </div>
-                <Button theme="default" text="Definir" />
+                <div  onClick={() => {
+                    setDefined(true)
+                    setOpenModal(false)
+                }}>
+                    <Button theme="default" text="Definir" />
+                </div>
+            </div>
+        </div>
+    )
+
+    // MUDANÇA NA INTERFACE AO DEFINIR ALARME ---------------------------------------------------------------
+    const [defined, setDefined] = useState(false)
+
+    let definedTimeStyle = {
+        fontSize: '35px',
+        fontWeight: 700
+    }
+
+    let alarmTitleStyle = {
+        fontSize: '25px',
+        fontWeight: 500
+    }
+
+    let alarmBox = (
+        <div
+            style={{
+                width: '230px',
+                padding: '20px',
+                backgroundColor: palette.secondaryColor,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: '15px'
+            }}
+        >
+            {configTitle != '' ? (<p style={{...alarmTitleStyle}}>{configTitle}</p>) : null}
+            <div style={{width: '100%'}}>
+                <p style={{textAlign: 'left', fontSize: '18px'}}><i>Definido para</i></p>
+                <div style={{marginTop: '5px', display: 'flex', justifyContent: 'center', gap: '2px'}}>
+                    <p style={{...definedTimeStyle}}>{selectHour}</p>
+                    <p style={{...definedTimeStyle}}>:</p>
+                    <p style={{...definedTimeStyle}}>{selectMinute}</p>
+                </div>
+            </div>
+            <div onClick={() => setDefined(false)}>
+                <Button text="Cancelar" theme="red" />
             </div>
         </div>
     )
@@ -230,9 +293,11 @@ export default function Alarm(props) {
                     <div style={{margin: '20px 0'}}>
                         <Clock hour={formatNumber(hour)} minutes={formatNumber(minutes)} seconds={formatNumber(seconds)} />
                     </div>
-                    <div onClick={() => setOpenModal(true)}>
-                        <Button theme="default" text="Configurar alarme" />
-                    </div>
+                    {!defined ? (
+                        <div onClick={() => setOpenModal(true)}>
+                            <Button theme="default" text="Configurar alarme" />
+                        </div>
+                    ) : alarmBox}
                 </div>
             </Page>
         </>
