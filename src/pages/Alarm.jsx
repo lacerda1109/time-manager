@@ -3,10 +3,7 @@ import Page from '../components/Page'
 import Clock from '../components/Clock'
 import Button from '../components/Button'
 import Modal from '../components/Modal'
-import {
-    IoIosArrowBack,
-    IoIosArrowForward
-} from 'react-icons/io'
+import SelectNumbers from '../components/SelectNumbers'
 import { palette } from '../theme/palette'
 
 export default function Alarm(props) {
@@ -43,6 +40,8 @@ export default function Alarm(props) {
             break
         case 6:
             weekDay = 'Sábado'
+            break
+        default:
             break
     }
 
@@ -82,6 +81,8 @@ export default function Alarm(props) {
             break
         case 11:
             month = 'Dezembro'
+            break
+        default:
             break
     }
 
@@ -125,92 +126,14 @@ export default function Alarm(props) {
                     alignItems: 'center'
                 }}
             >
-                <div /* NUMEROS */
+                <div
                     style={{
                         display: 'flex',
                         gap: '15px'
                     }}
                 >
-                    <div /* Hora */
-                        style={{ textAlign: 'center' }}
-                    >
-                        <label>H</label>
-                        <div
-                            style={{ display: 'flex', marginTop: '10px' }}
-                        >
-                            <div
-                                style={{
-                                    backgroundColor: palette.secondaryColor,
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    borderRadius: '4px 0 0 4px',
-                                    cursor: 'pointer'
-                                }}
-                                onClick={() => setSelectHour(selectHour - 1)}
-                            ><IoIosArrowBack /></div>
-                            <select
-                                style={{
-                                    width: '55px'
-                                }}
-                                value={selectHour}
-                                onChange={(e) => {
-                                    setSelectHour(Number(e.target.value))
-                                }}
-                            >
-                                {arrHour.map((el, i) => (<option key={i} value={el}>{formatNumber(el)}</option>))}
-                            </select>
-                            <div
-                                style={{
-                                    backgroundColor: palette.secondaryColor,
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    borderRadius: '0 4px 4px 0',
-                                    cursor: 'pointer'
-                                }}
-                                onClick={() => setSelectHour(selectHour + 1)}
-                            ><IoIosArrowForward /></div>
-                        </div>
-                    </div>
-                    <div /* Minuto */
-                        style={{ textAlign: 'center' }}
-                    >
-                        <label>M</label>
-                        <div
-                            style={{ display: 'flex', marginTop: '10px' }}
-                        >
-                            <div
-                                style={{
-                                    backgroundColor: palette.secondaryColor,
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    borderRadius: '4px 0 0 4px',
-                                    cursor: 'pointer'
-                                }}
-                                onClick={() => setSelectMinute(selectMinute - 1)}
-                            ><IoIosArrowBack /></div>
-                            <select
-                                style={{
-                                    width: '55px'
-                                }}
-                                value={selectMinute}
-                                onChange={(e) => {
-                                    setSelectMinute(Number(e.target.value))
-                                }}
-                            >
-                                {arrMin.map((el, i) => (<option key={i} value={el}>{formatNumber(el)}</option>))}
-                            </select>
-                            <div
-                                style={{
-                                    backgroundColor: palette.secondaryColor,
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    borderRadius: '0 4px 4px 0',
-                                    cursor: 'pointer'
-                                }}
-                                onClick={() => setSelectMinute(selectMinute + 1)}
-                            ><IoIosArrowForward /></div>
-                        </div>
-                    </div>
+                    <SelectNumbers title="H" state={selectHour} setState={setSelectHour} options={arrHour} />
+                    <SelectNumbers title="M" state={selectMinute} setState={setSelectMinute} options={arrMin} />
                 </div>
                 <div /* TITULO */
                     style={{width: '100%'}}
@@ -273,7 +196,7 @@ export default function Alarm(props) {
                 gap: '15px'
             }}
         >
-            {configTitle != '' ? (<p style={{...alarmTitleStyle}}>{configTitle}</p>) : null}
+            {configTitle !== '' ? (<p style={{...alarmTitleStyle}}>{configTitle}</p>) : null}
             <div style={{width: '100%'}}>
                 <p style={{textAlign: 'left', fontSize: '18px'}}><i>Definido para</i></p>
                 <div style={{marginTop: '5px', display: 'flex', justifyContent: 'center', gap: '2px'}}>
