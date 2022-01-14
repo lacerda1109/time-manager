@@ -29,6 +29,16 @@ p {
     font-weight: 200;
 }
 
+input {
+    border: 0;
+    padding: 5px;
+    font-size: 20px;
+}
+
+input:focus {
+    outline: 0;
+}
+
 body {
     font-family: "Roboto";
     background-color: #202529;

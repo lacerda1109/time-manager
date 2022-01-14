@@ -3,6 +3,11 @@ import Page from '../components/Page'
 import Clock from '../components/Clock'
 import Button from '../components/Button'
 import Modal from '../components/Modal'
+import {
+    IoIosArrowBack,
+    IoIosArrowForward
+} from 'react-icons/io'
+import { palette } from '../theme/palette'
 
 export default function Alarm(props) {
     function formatNumber(number) {
@@ -93,10 +98,129 @@ export default function Alarm(props) {
 
     // MODAL CONFIG
     const [openModal, setOpenModal] = useState(false)
+    const [configHour, setConfigHour] = useState('')
+    const [configMinute, setConfigMinute] = useState('')
+    const [configTitle, setConfigTitle] = useState('')
+
+    const modalBody = (
+        <div>
+            <div
+                style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '30px',
+                    alignItems: 'center'
+                }}
+            >
+                <div /* NUMEROS */
+                    style={{
+                        display: 'flex',
+                        gap: '15px'
+                    }}
+                >
+                    <div /* Hora */
+                        style={{ textAlign: 'center' }}
+                    >
+                        <label>H</label>
+                        <div /* Input */
+                            style={{ display: 'flex', marginTop: '10px' }}
+                        >
+                            <div
+                                style={{
+                                    backgroundColor: palette.secondaryColor,
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    borderRadius: '4px 0 0 4px',
+                                    cursor: 'pointer'
+                                }}
+                            ><IoIosArrowBack /></div>
+                            <input
+                                type="text"
+                                value={configHour}
+                                onChange={(e) => setConfigHour(e.target.value)}
+                                style={{
+                                    textAlign: 'center',
+                                    width: '50px'
+                                }}
+                            />
+                            <div
+                                style={{
+                                    backgroundColor: palette.secondaryColor,
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    borderRadius: '0 4px 4px 0',
+                                    cursor: 'pointer'
+                                }}
+                            ><IoIosArrowForward /></div>
+                        </div>
+                    </div>
+                    <div /* Min */
+                        style={{ textAlign: 'center' }}
+                    >
+                        <label>M</label>
+                        <div /* Input */
+                            style={{ display: 'flex', marginTop: '10px' }}
+                        >
+                            <div
+                                style={{
+                                    backgroundColor: palette.secondaryColor,
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    borderRadius: '4px 0 0 4px',
+                                    cursor: 'pointer'
+                                }}
+                            ><IoIosArrowBack /></div>
+                            <input
+                                type="text"
+                                value={configMinute}
+                                onChange={(e) => setConfigMinute(e.target.value)}
+                                style={{
+                                    textAlign: 'center',
+                                    width: '50px'
+                                }}
+                            />
+                            <div
+                                style={{
+                                    backgroundColor: palette.secondaryColor,
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    borderRadius: '0 4px 4px 0',
+                                    cursor: 'pointer'
+                                }}
+                            ><IoIosArrowForward /></div>
+                        </div>
+                    </div>
+                </div>
+                <div /* TITULO */>
+                    <label>Adicione um título</label>
+                    <div style={{marginTop: '10px'}}>
+                        <input
+                            type="text"
+                            value={configTitle}
+                            onChange={(e) => setConfigTitle(e.target.value)}
+                        />
+                    </div>
+                </div>
+            </div>
+            <div
+                style={{
+                    display: 'flex',
+                    gap: '15px',
+                    justifyContent: 'flex-end',
+                    marginTop: '30px'
+                }}
+            >
+                <div onClick={() => setOpenModal(false)}>
+                    <Button theme="secondary" text="Cancelar" />
+                </div>
+                <Button theme="default" text="Definir" />
+            </div>
+        </div>
+    )
 
     return (
         <>
-            <Modal openModal={openModal} setOpenModal={setOpenModal} headerTitle="Configuração do alarme" />
+            <Modal openModal={openModal} setOpenModal={setOpenModal} headerTitle="Configuração do alarme" body={modalBody} />
             <Page>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                     <p><i>{weekDay}, {monthDay} de {month} de {year}</i></p>
