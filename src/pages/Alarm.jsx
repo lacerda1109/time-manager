@@ -254,7 +254,8 @@ export default function Alarm(props) {
 
     let alarmTitleStyle = {
         fontSize: '25px',
-        fontWeight: 500
+        fontWeight: 500,
+        textAlign: 'center'
     }
 
     let alarmBox = (
@@ -273,9 +274,9 @@ export default function Alarm(props) {
             <div style={{width: '100%'}}>
                 <p style={{textAlign: 'left', fontSize: '18px'}}><i>Definido para</i></p>
                 <div style={{marginTop: '5px', display: 'flex', justifyContent: 'center', gap: '2px'}}>
-                    <p style={{...definedTimeStyle}}>{selectHour}</p>
+                    <p style={{...definedTimeStyle}}>{formatNumber(selectHour)}</p>
                     <p style={{...definedTimeStyle}}>:</p>
-                    <p style={{...definedTimeStyle}}>{selectMinute}</p>
+                    <p style={{...definedTimeStyle}}>{formatNumber(selectMinute)}</p>
                 </div>
             </div>
             <div onClick={() => setDefined(false)}>
