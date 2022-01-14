@@ -2,8 +2,9 @@ import { useState, useEffect } from 'react'
 import Page from '../components/Page'
 import Clock from '../components/Clock'
 import Button from '../components/Button'
+import Modal from '../components/Modal'
 
-export default function Alarm() {
+export default function Alarm(props) {
     function formatNumber(number) {
         return number < 10 ? '0' + number : number
     }
@@ -90,17 +91,23 @@ export default function Alarm() {
         }, 1000)
     },[])
 
+    // MODAL CONFIG
+    const [openModal, setOpenModal] = useState(false)
+
     return (
-        <Page>
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-                <p><i>{weekDay}, {monthDay} de {month} de {year}</i></p>
-                <div style={{margin: '20px 0'}}>
-                    <Clock hour={formatNumber(hour)} minutes={formatNumber(minutes)} seconds={formatNumber(seconds)} />
+        <>
+            <Modal openModal={openModal} setOpenModal={setOpenModal} headerTitle="Configuração do alarme" />
+            <Page>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+                    <p><i>{weekDay}, {monthDay} de {month} de {year}</i></p>
+                    <div style={{margin: '20px 0'}}>
+                        <Clock hour={formatNumber(hour)} minutes={formatNumber(minutes)} seconds={formatNumber(seconds)} />
+                    </div>
+                    <div onClick={() => setOpenModal(true)}>
+                        <Button theme="default" text="Configurar alarme" />
+                    </div>
                 </div>
-                <div>
-                    <Button theme="default" text="Configurar alarme" />
-                </div>
-            </div>
-        </Page>
+            </Page>
+        </>
     )
 }
