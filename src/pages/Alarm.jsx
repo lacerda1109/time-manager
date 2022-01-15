@@ -6,7 +6,7 @@ import Modal from '../components/Modal'
 import SelectNumbers from '../components/SelectNumbers'
 import { palette } from '../theme/palette'
 
-export default function Alarm(props) {
+export default function Alarm() {
     // FUNÇÃO DE FORMATAR NÚMEROS ---------------------------------------------------------------------------
     function formatNumber(number) {
         return number < 10 ? '0' + number : number
@@ -100,6 +100,39 @@ export default function Alarm(props) {
         }, 1000)
     },[])
 
+    // LÓGICA PARA ALARME -----------------------------------------------------------------------------------
+    // https://stackoverflow.com/questions/53578567/how-can-i-add-a-pause-functionality-in-this-timer-react-native
+    const [alarmInterval, setAlarmInterval] = useState('')
+    const [cancelAlarm, setCancelAlarm] = useState(false)
+
+    function startAlarm(){
+        setAlarmInterval(setInterval(() => {
+            let d = new Date()
+            let h = d.getHours()
+            let m = d.getMinutes()
+            let s = d.getSeconds()
+
+            console.log(h, m, s, selectHour, selectMinute)
+
+            if (h === selectHour && m === selectMinute && s === 0) {
+                console.log('DESPERTAR')
+                setDefined(false)
+                setCancelAlarm(true)
+            }
+        }, 1000))
+    }
+
+    function stopAlarm(){
+        clearInterval(alarmInterval);
+    }
+
+    useEffect(() => {
+        if (cancelAlarm) {
+            setCancelAlarm(false)
+            stopAlarm()
+        }
+    }, [cancelAlarm])
+
     // MODAL CONFIG -----------------------------------------------------------------------------------------
     const [openModal, setOpenModal] = useState(false)
     const [configTitle, setConfigTitle] = useState('')
@@ -163,6 +196,7 @@ export default function Alarm(props) {
                 <div  onClick={() => {
                     setDefined(true)
                     setOpenModal(false)
+                    startAlarm()
                 }}>
                     <Button theme="default" text="Definir" />
                 </div>
@@ -205,7 +239,10 @@ export default function Alarm(props) {
                     <p style={{...definedTimeStyle}}>{formatNumber(selectMinute)}</p>
                 </div>
             </div>
-            <div onClick={() => setDefined(false)}>
+            <div onClick={() => {
+                setDefined(false)
+                stopAlarm()
+            }}>
                 <Button text="Cancelar" theme="red" />
             </div>
         </div>
