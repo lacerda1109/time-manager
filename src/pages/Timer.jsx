@@ -4,13 +4,9 @@ import Clock from '../components/Clock'
 import Button from '../components/Button'
 import Modal from '../components/Modal'
 import SelectNumbers from '../components/SelectNumbers'
+import { formatNumber } from '../utils/functions'
 
 export default function Timer() {
-    // FUNÇÃO DE FORMATAR NÚMEROS ---------------------------------------------------------------------------
-    function formatNumber(number) {
-        return number < 10 ? '0' + number : number
-    }
-
     // ESTADOS DOS NÚMEROS PARA DISPLAY ---------------------------------------------------------------------
     const [hour, setHour] = useState(0)
     const [minutes, setMinutes] = useState(2)

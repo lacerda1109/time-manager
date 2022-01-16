@@ -5,13 +5,9 @@ import Button from '../components/Button'
 import Modal from '../components/Modal'
 import SelectNumbers from '../components/SelectNumbers'
 import { palette } from '../theme/palette'
+import { formatNumber } from '../utils/functions'
 
 export default function Alarm() {
-    // FUNÇÃO DE FORMATAR NÚMEROS ---------------------------------------------------------------------------
-    function formatNumber(number) {
-        return number < 10 ? '0' + number : number
-    }
-
     // CONFIGURAÇÃO DE EXIBIÇÃO DA DATA ---------------------------------------------------------------------
     let date = new Date()
     let weekDay = date.getDay()

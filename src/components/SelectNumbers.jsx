@@ -4,12 +4,9 @@ import {
     IoIosArrowForward
 } from 'react-icons/io'
 import './SelectNumbers.css'
+import { formatNumber } from '../utils/functions'
 
 export default function SelectNumbers(props) {
-    function formatNumber(number) {
-        return number < 10 ? '0' + number : number
-    }
-
     return (
         <div
             style={{ textAlign: 'center' }}
