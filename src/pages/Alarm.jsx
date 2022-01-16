@@ -150,59 +150,43 @@ export default function Alarm() {
     }
 
     const modalBody = (
-        <div>
+        <div
+            style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '20px',
+                alignItems: 'center'
+            }}
+        >
             <div
                 style={{
                     display: 'flex',
-                    flexDirection: 'column',
-                    gap: '20px',
-                    alignItems: 'center'
+                    gap: '15px'
                 }}
             >
-                <div
-                    style={{
-                        display: 'flex',
-                        gap: '15px'
-                    }}
-                >
-                    <SelectNumbers title="H" state={selectHour} setState={setSelectHour} options={arrHour} />
-                    <SelectNumbers title="M" state={selectMinute} setState={setSelectMinute} options={arrMin} />
-                </div>
-                <div /* TITULO */
-                    style={{width: '100%'}}
-                >
-                    <label>Adicione um título</label>
-                    <div style={{marginTop: '10px'}}>
-                        <input
-                            style={{ borderRadius: '4px', width: '100%' }}
-                            type="text"
-                            value={configTitle}
-                            onChange={(e) => setConfigTitle(e.target.value)}
-                        />
-                    </div>
-                </div>
+                <SelectNumbers title="H" state={selectHour} setState={setSelectHour} options={arrHour} />
+                <SelectNumbers title="M" state={selectMinute} setState={setSelectMinute} options={arrMin} />
             </div>
-            <div
-                style={{
-                    display: 'flex',
-                    gap: '15px',
-                    justifyContent: 'flex-end',
-                    marginTop: '30px'
-                }}
+            <div /* TITULO */
+                style={{width: '100%'}}
             >
-                <div onClick={() => setOpenModal(false)}>
-                    <Button theme="secondary" text="Cancelar" />
-                </div>
-                <div  onClick={() => {
-                    setDefined(true)
-                    setOpenModal(false)
-                    startAlarm()
-                }}>
-                    <Button theme="default" text="Definir" />
+                <label>Adicione um título</label>
+                <div style={{marginTop: '10px'}}>
+                    <input
+                        style={{ borderRadius: '4px', width: '100%' }}
+                        type="text"
+                        value={configTitle}
+                        onChange={(e) => setConfigTitle(e.target.value)}
+                    />
                 </div>
             </div>
         </div>
     )
+
+    function finalButtonFunction() {
+        setDefined(true)
+        startAlarm()
+    }
 
     // MUDANÇA NA INTERFACE AO DEFINIR ALARME ---------------------------------------------------------------
     const [defined, setDefined] = useState(false)
@@ -250,7 +234,14 @@ export default function Alarm() {
 
     return (
         <>
-            <Modal openModal={openModal} setOpenModal={setOpenModal} headerTitle="Configuração do alarme" body={modalBody} />
+            <Modal
+                openModal={openModal}
+                setOpenModal={setOpenModal}
+                headerTitle="Configuração do alarme"
+                body={modalBody}
+                finalButtonText="Definir"
+                finalButtonFunction={finalButtonFunction}
+            />
             <Page>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                     <p><i>{weekDay}, {monthDay} de {month} de {year}</i></p>

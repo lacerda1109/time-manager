@@ -40,60 +40,52 @@ export default function Timer() {
     }
 
     const modalBody = (
-        <div>
+        <div
+            style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '20px',
+                alignItems: 'center'
+            }}
+        >
             <div
                 style={{
                     display: 'flex',
-                    flexDirection: 'column',
-                    gap: '20px',
-                    alignItems: 'center'
+                    gap: '15px'
                 }}
             >
-                <div
-                    style={{
-                        display: 'flex',
-                        gap: '15px'
-                    }}
-                >
-                    <SelectNumbers title="H" state={selectHour} setState={setSelectHour} options={arrHour} />
-                    <SelectNumbers title="M" state={selectMinutes} setState={setSelectMinutes} options={arrMin} />
-                    <SelectNumbers title="S" state={selectSeconds} setState={setSelectSeconds} options={arrSec} />
-                </div>
-                <div /* TITULO */
-                    style={{width: '100%'}}
-                >
-                    <label>Adicione um título</label>
-                    <div style={{marginTop: '10px'}}>
-                        <input
-                            style={{ borderRadius: '4px', width: '100%' }}
-                            type="text"
-                            value={configTitle}
-                            onChange={(e) => setConfigTitle(e.target.value)}
-                        />
-                    </div>
-                </div>
+                <SelectNumbers title="H" state={selectHour} setState={setSelectHour} options={arrHour} />
+                <SelectNumbers title="M" state={selectMinutes} setState={setSelectMinutes} options={arrMin} />
+                <SelectNumbers title="S" state={selectSeconds} setState={setSelectSeconds} options={arrSec} />
             </div>
-            <div
-                style={{
-                    display: 'flex',
-                    gap: '15px',
-                    justifyContent: 'flex-end',
-                    marginTop: '30px'
-                }}
+            <div /* TITULO */
+                style={{width: '100%'}}
             >
-                <div onClick={() => setOpenModal(false)}>
-                    <Button theme="secondary" text="Cancelar" />
-                </div>
-                <div>
-                    <Button theme="default" text="Começar" />
+                <label>Adicione um título</label>
+                <div style={{marginTop: '10px'}}>
+                    <input
+                        style={{ borderRadius: '4px', width: '100%' }}
+                        type="text"
+                        value={configTitle}
+                        onChange={(e) => setConfigTitle(e.target.value)}
+                    />
                 </div>
             </div>
         </div>
     )
 
+    function finalButtonFunction() {}
+
     return (
         <>
-            <Modal openModal={openModal} setOpenModal={setOpenModal} headerTitle="Configuração do timer" body={modalBody} />
+            <Modal
+                openModal={openModal}
+                setOpenModal={setOpenModal}
+                headerTitle="Configuração do timer"
+                body={modalBody}
+                finalButtonText="Começar"
+                finalButtonFunction={finalButtonFunction}
+            />
             <Page>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px'}}>
                     <Clock hour={formatNumber(hour)} minutes={formatNumber(minutes)} seconds={formatNumber(seconds)} />

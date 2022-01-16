@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import { palette } from '../theme/palette'
 import { AiOutlineClose } from 'react-icons/ai'
+import Button from './Button'
 
 export default function Modal(props) {
     const modal = useRef()
@@ -53,6 +54,24 @@ export default function Modal(props) {
                     }}
                 >
                     {props.body}
+                    <div
+                        style={{
+                            display: 'flex',
+                            gap: '15px',
+                            justifyContent: 'flex-end',
+                            marginTop: '30px'
+                        }}
+                    >
+                        <div onClick={() => props.setOpenModal(false)}>
+                            <Button theme="secondary" text="Cancelar" />
+                        </div>
+                        <div  onClick={() => {
+                            props.setOpenModal(false)
+                            props.finalButtonFunction()
+                        }}>
+                            <Button theme="default" text={props.finalButtonText} />
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
