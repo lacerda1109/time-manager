@@ -30,7 +30,7 @@ export default function Timer() {
     }
     let arrSec = []
     for (let x = 0 ; x < 60 ; x ++) {
-        if (x % 5 == 0) {
+        if (x % 5 === 0) {
             arrSec.push(x)
         }
     }
@@ -70,7 +70,30 @@ export default function Timer() {
         </div>
     )
 
-    function finalButtonFunction() {}
+    function finalButtonFunction() {
+        startTimer()
+    }
+
+    // CONFIGURAÇÕES DOS BOTÕES DA INTERFACE ----------------------------------------------------------------
+    const [started, setStarted] = useState(false)
+    const [paused, setPaused] = useState(false)
+
+    // FUNÇÕES DO TIMER -------------------------------------------------------------------------------------
+    function startTimer() {
+        setStarted(true)
+        setPaused(false)
+        setHour(selectHour)
+        setMinutes(selectMinutes)
+        setSeconds(selectSeconds)
+    }
+
+    function pauseTimer() {
+        if (paused) {
+            setPaused(false)
+        } else {
+            setPaused(true)
+        }
+    }
 
     return (
         <>
@@ -91,9 +114,20 @@ export default function Timer() {
                         >
                             <Button text="Configurar timer" theme="secondary" />
                         </div>
-                        <div>
-                            <Button text="Começar" theme="default" />
-                        </div>
+                        {!started ? (
+                            <div onClick={() => setStarted(true)}>
+                                <Button text="Começar" theme="default" />
+                            </div>
+                        ) : (
+                            <>
+                                <div>
+                                    <Button text="Recomeçar" theme="red" />
+                                </div>
+                                <div onClick={() => pauseTimer()}>
+                                    <Button text={paused ? "Continuar" : "Pausar"} theme="default" />
+                                </div>
+                            </>
+                        )}
                     </div>
                 </div>
             </Page>
