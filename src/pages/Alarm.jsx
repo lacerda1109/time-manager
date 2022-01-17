@@ -239,9 +239,9 @@ export default function Alarm() {
                 finalButtonFunction={finalButtonFunction}
             />
             <Page>
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px'}}>
                     <p><i>{weekDay}, {monthDay} de {month} de {year}</i></p>
-                    <div style={{margin: '20px 0'}}>
+                    <div>
                         <Clock hour={formatNumber(hour)} minutes={formatNumber(minutes)} seconds={formatNumber(seconds)} />
                     </div>
                     {!defined ? (
