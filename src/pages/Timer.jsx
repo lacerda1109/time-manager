@@ -52,7 +52,7 @@ export default function Timer() {
             >
                 <SelectNumbers title="H" state={selectHour} setState={setSelectHour} options={arrHour} />
                 <SelectNumbers title="M" state={selectMinutes} setState={setSelectMinutes} options={arrMin} />
-                <SelectNumbers title="S" state={selectSeconds} setState={setSelectSeconds} options={arrSec} />
+                <SelectNumbers five title="S" state={selectSeconds} setState={setSelectSeconds} options={arrSec} />
             </div>
             <div /* TITULO */
                 style={{width: '100%'}}

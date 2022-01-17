@@ -26,7 +26,7 @@ export default function SelectNumbers(props) {
                     }}
                     onClick={() => {
                         if (!props.state == 0) {
-                            props.setState(props.state - 1)
+                            props.setState(props.state - (props.five ? 5 : 1))
                         }
                     }}
                 ><IoIosArrowBack /></div>
@@ -52,7 +52,7 @@ export default function SelectNumbers(props) {
                     }}
                     onClick={() => {
                         if (!(props.state == props.options[props.options.length - 1])) {
-                            props.setState(props.state + 1)
+                            props.setState(props.state + (props.five ? 5 : 1))
                         }
                     }}
                 ><IoIosArrowForward /></div>
