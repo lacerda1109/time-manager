@@ -74,13 +74,21 @@ export default function Timer() {
         startTimer()
     }
 
-    // CONFIGURAÇÕES DOS BOTÕES DA INTERFACE ----------------------------------------------------------------
+    // CONFIGURAÇÕES DOS BOTÕES E INTERFACE -----------------------------------------------------------------
     const [started, setStarted] = useState(false)
     const [paused, setPaused] = useState(false)
+    const [timerTitle, setTimerTitle] = useState('')
+
+    let timerTitleStyle = {
+        fontSize: '25px',
+        fontWeight: 500,
+        textAlign: 'center'
+    }
 
     // FUNÇÕES DO TIMER -------------------------------------------------------------------------------------
     function startTimer() {
         setStarted(true)
+        setTimerTitle(configTitle)
         setPaused(false)
         setHour(selectHour)
         setMinutes(selectMinutes)
@@ -107,6 +115,7 @@ export default function Timer() {
             />
             <Page>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px'}}>
+                    {timerTitle !== '' ? (<p style={{...timerTitleStyle}}>{timerTitle}</p>) : null}
                     <Clock hour={formatNumber(hour)} minutes={formatNumber(minutes)} seconds={formatNumber(seconds)} />
                     <div style={{display: 'flex', gap: '15px'}}>
                         <div
