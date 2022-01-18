@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import Page from '../components/Page'
 import Clock from '../components/Clock'
 import Button from '../components/Button'
@@ -11,8 +11,8 @@ export default function Timer() {
     const [openModal, setOpenModal] = useState(false)
 
     const [selectHour, setSelectHour] = useState(0)
-    const [selectMinutes, setSelectMinutes] = useState(0)
-    const [selectSeconds, setSelectSeconds] = useState(5)
+    const [selectMinutes, setSelectMinutes] = useState(2)
+    const [selectSeconds, setSelectSeconds] = useState(0)
     const [configTitle, setConfigTitle] = useState('')
 
     let arrHour = []
@@ -65,10 +65,6 @@ export default function Timer() {
         </div>
     )
 
-    function finalButtonFunction() {
-        startTimer() // Passar apenas esta funcao para o componente modal
-    }
-
     // CONFIGURAÇÕES DOS BOTÕES E INTERFACE -----------------------------------------------------------------
     const [started, setStarted] = useState(false)
     const [paused, setPaused] = useState(true)
@@ -80,25 +76,17 @@ export default function Timer() {
         textAlign: 'center'
     }
 
-    // ESTADOS DOS NÚMEROS PARA DISPLAY ---------------------------------------------------------------------
-    const [hour, setHour] = useState(0)
-    const [minutes, setMinutes] = useState(0)
-    const [seconds, setSeconds] = useState(3)
-
     // FUNÇÕES DO TIMER -------------------------------------------------------------------------------------
-    // https://stackoverflow.com/questions/53024496/state-not-updating-when-using-react-state-hook-within-setinterval
     // https://www.youtube.com/watch?v=sSWGdj8a5Fs VIDEO TIMER
-    const [timerInterval, setTimerInterval] = useState('')
 
     const [time, setTime] = useState((selectHour * 3600000) + (selectMinutes * 60000) + (selectSeconds * 1000))
-    console.log(time)
 
     let interval
     useEffect(() => {
         if (!paused) {
             interval = setInterval(() => {
                 setTime(prev => prev - 1000)
-                console.log(time)
+                // Neste escopo não conseguimos acessar o valor atualizado da variável "time"
             }, 1000)
         } else {
             clearInterval(interval)
@@ -138,7 +126,7 @@ export default function Timer() {
                 headerTitle="Configuração do timer"
                 body={modalBody}
                 finalButtonText="Começar"
-                finalButtonFunction={finalButtonFunction}
+                finalButtonFunction={startTimer}
             />
             <Page>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px'}}>
