@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Page from '../components/Page'
 import Clock from '../components/Clock'
 import Button from '../components/Button'
@@ -7,21 +7,16 @@ import SelectNumbers from '../components/SelectNumbers'
 import { formatNumber } from '../utils/functions'
 
 export default function Timer() {
-    // ESTADOS DOS NÚMEROS PARA DISPLAY ---------------------------------------------------------------------
-    const [hour, setHour] = useState(0)
-    const [minutes, setMinutes] = useState(2)
-    const [seconds, setSeconds] = useState(0)
-
     // CONFIGURAÇÕES DO MODAL -------------------------------------------------------------------------------
     const [openModal, setOpenModal] = useState(false)
 
     const [selectHour, setSelectHour] = useState(0)
-    const [selectMinutes, setSelectMinutes] = useState(2)
-    const [selectSeconds, setSelectSeconds] = useState(0)
+    const [selectMinutes, setSelectMinutes] = useState(0)
+    const [selectSeconds, setSelectSeconds] = useState(5)
     const [configTitle, setConfigTitle] = useState('')
 
     let arrHour = []
-    for (let x = 0 ; x < 24 ; x++) {
+    for (let x = 0 ; x < 11 ; x++) {
         arrHour.push(x)
     }
     let arrMin = []
@@ -71,12 +66,12 @@ export default function Timer() {
     )
 
     function finalButtonFunction() {
-        startTimer()
+        startTimer() // Passar apenas esta funcao para o componente modal
     }
 
     // CONFIGURAÇÕES DOS BOTÕES E INTERFACE -----------------------------------------------------------------
     const [started, setStarted] = useState(false)
-    const [paused, setPaused] = useState(false)
+    const [paused, setPaused] = useState(true)
     const [timerTitle, setTimerTitle] = useState('')
 
     let timerTitleStyle = {
@@ -85,22 +80,54 @@ export default function Timer() {
         textAlign: 'center'
     }
 
+    // ESTADOS DOS NÚMEROS PARA DISPLAY ---------------------------------------------------------------------
+    const [hour, setHour] = useState(0)
+    const [minutes, setMinutes] = useState(0)
+    const [seconds, setSeconds] = useState(3)
+
     // FUNÇÕES DO TIMER -------------------------------------------------------------------------------------
+    // https://stackoverflow.com/questions/53024496/state-not-updating-when-using-react-state-hook-within-setinterval
+    // https://www.youtube.com/watch?v=sSWGdj8a5Fs VIDEO TIMER
+    const [timerInterval, setTimerInterval] = useState('')
+
+    const [time, setTime] = useState((selectHour * 3600000) + (selectMinutes * 60000) + (selectSeconds * 1000))
+    console.log(time)
+
+    let interval
+    useEffect(() => {
+        if (!paused) {
+            interval = setInterval(() => {
+                setTime(prev => prev - 1000)
+                console.log(time)
+            }, 1000)
+        } else {
+            clearInterval(interval)
+        }
+
+        return () => clearInterval(interval)
+    }, [paused])
+
+    useEffect(() => {
+        if (time === 0) {
+            setPaused(true)
+            setStarted(false)
+            console.log('DESPERTAR')
+        }
+    }, [time])
+    
     function startTimer() {
         setStarted(true)
+        setTime((selectHour * 3600000) + (selectMinutes * 60000) + (selectSeconds * 1000))
         setTimerTitle(configTitle)
         setPaused(false)
-        setHour(selectHour)
-        setMinutes(selectMinutes)
-        setSeconds(selectSeconds)
     }
 
     function pauseTimer() {
-        if (paused) {
-            setPaused(false)
-        } else {
-            setPaused(true)
-        }
+        setPaused(paused ? false : true)
+    }
+
+    function restartTimer() {
+        setTime((selectHour * 3600000) + (selectMinutes * 60000) + (selectSeconds * 1000))
     }
 
     return (
@@ -116,7 +143,11 @@ export default function Timer() {
             <Page>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px'}}>
                     {timerTitle !== '' ? (<p style={{...timerTitleStyle}}>{timerTitle}</p>) : null}
-                    <Clock hour={formatNumber(hour)} minutes={formatNumber(minutes)} seconds={formatNumber(seconds)} />
+                    <Clock
+                        hour={formatNumber(Math.floor(time / (60 * 60000) % 60))}
+                        minutes={formatNumber(Math.floor((time / (60000)) % 60))}
+                        seconds={formatNumber((time / 1000) % 60)}
+                    />
                     <div style={{display: 'flex', gap: '15px'}}>
                         <div
                             onClick={() => setOpenModal(true)}
@@ -124,12 +155,14 @@ export default function Timer() {
                             <Button text="Configurar timer" theme="secondary" />
                         </div>
                         {!started ? (
-                            <div onClick={() => setStarted(true)}>
+                            <div onClick={() => {
+                                startTimer()
+                            }}>
                                 <Button text="Começar" theme="default" />
                             </div>
                         ) : (
                             <>
-                                <div>
+                                <div onClick={() => restartTimer()}>
                                     <Button text="Recomeçar" theme="red" />
                                 </div>
                                 <div onClick={() => pauseTimer()}>
