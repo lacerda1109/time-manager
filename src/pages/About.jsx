@@ -1,4 +1,6 @@
 import Page from '../components/Page'
+import Button from '../components/Button'
+import { Link } from 'react-router-dom'
 
 export default function About() {
     return (
@@ -11,6 +13,9 @@ export default function About() {
                 <div style={{display: 'flex', flexDirection: 'column', gap: '25px'}}>
                     <h2>Sobre mim</h2>
                     <p>Me chamo Gabriel. Estudante da área de desenvolvimento web front-end. Meus estudos envolvem HTML, CSS, JavaScript, React JS e outras tecnologias. Confira minhas redes sociais nos links acima!</p>
+                </div>
+                <div style={{ marginTop: '50px' }}>
+                    <Link to="/"><Button theme="default" text="Voltar" /></Link>
                 </div>
             </div>
         </Page>
