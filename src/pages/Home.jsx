@@ -15,7 +15,8 @@ export default function Home() {
                         justifyContent: "center",
                         alignItems: "center",
                         textAlign: "center",
-                        height: '100%',
+                        height: '500px',
+                        margin: '0 20px'
                     }}
                 >
                     <h1>Time Manager</h1>
