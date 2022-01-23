@@ -81,7 +81,7 @@ export default function Chronometer() {
                     </div>
                 ) : (
                     <div style={{ display: 'flex', gap: '15px' }}>
-                        <div>
+                        <div onClick={() => setTime(0)}>
                             <Button theme="red" text="Recomeçar" />
                         </div>
                         <div onClick={() => step()}>
