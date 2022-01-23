@@ -1,18 +1,33 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { palette } from '../theme/palette'
 import Page from '../components/Page'
 import ChronClock from '../components/ChronClock'
 import Button from '../components/Button'
+import { formatNumber } from '../utils/functions'
 
 export default function Chronometer() {
     const [started, setStarted] = useState(false)
     const [paused, setPaused] = useState(true)
+    const [time, setTime] = useState(0)
 
     // FUNÇÕES DO CRONÔMETRO --------------------------------------------------------------------------------
     function startChronometer() {
         setStarted(true)
         setPaused(false)
     }
+
+    let interval;
+    useEffect(() => {
+        if (!paused) {
+            interval = setInterval(() => {
+                setTime(prev => prev + 10)
+            }, 10)
+        } else {
+            clearInterval(interval)
+        }
+
+        return () => clearInterval(interval)
+    }, [paused])
 
     // MUDANÇAS NA INTERFACE --------------------------------------------------------------------------------
     const [stepBox, setStepBox] = useState(false)
@@ -24,9 +39,7 @@ export default function Chronometer() {
     let [arrStep, setArrStep] = useState([
         '00:02:424',
         '00:04:837',
-        // '00:06:637',
     ])
-    console.log(arrStep)
 
     let stepBoxLayout = (<div
         style={{
@@ -58,9 +71,9 @@ export default function Chronometer() {
         <Page>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px'}}>
                 <ChronClock
-                    minutes="00"
-                    seconds="00"
-                    milisec="00"
+                    minutes={formatNumber(Math.floor(time / 60000) % 60)}
+                    seconds={formatNumber(Math.floor((time / 1000) % 60))}
+                    milisec={formatNumber((time / 10) % 100)}
                 />
                 {!started ? (
                     <div onClick={() => startChronometer()}>
@@ -74,7 +87,7 @@ export default function Chronometer() {
                         <div onClick={() => step()}>
                             <Button theme="orange" text="Volta" />
                         </div>
-                        <div onClick={() => setPaused(!paused)}>
+                        <div onClick={() => setPaused(paused ? false : true)}>
                             <Button theme="default" text={paused ? "Continuar" : "Pausar"} />
                         </div>
                     </div>
