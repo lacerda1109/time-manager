@@ -108,8 +108,6 @@ export default function Alarm() {
             let m = d.getMinutes()
             let s = d.getSeconds()
 
-            console.log(h, m, s, selectHour, selectMinute)
-
             if (h === selectHour && m === selectMinute && s === 0) {
                 console.log('DESPERTAR')
                 setDefined(false)

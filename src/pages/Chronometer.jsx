@@ -39,8 +39,10 @@ export default function Chronometer() {
     }
 
     function step() {
-        setStepBox(true);
-        setArrStep((prev) => [...prev, timeForBox()]);
+        if (!paused) {
+            setStepBox(true);
+            setArrStep((prev) => [...prev, timeForBox()]);
+        }
     }
 
     let [arrStep, setArrStep] = useState([]);
