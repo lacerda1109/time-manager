@@ -36,7 +36,20 @@ export default function Chronometer() {
         }
 
         return () => clearInterval(interval);
-    }, [paused]);
+    }, [paused, initialTime]);
+
+    // FUNÇÃO RECOMEÇAR -------------------------------------------------------------------------------------
+    function restart() {
+        setWasPaused(false)
+        let date = new Date().getTime()
+        setInitialTime(date)
+        setStepBox(false)
+        setArrStep([])
+        setGap(0)
+        if (paused) {
+            setTime(0)
+        }
+    }
 
     // FUNÇÃO DE PAUSE --------------------------------------------------------------------------------------
     function pause() {
@@ -53,7 +66,7 @@ export default function Chronometer() {
 
         return `${formatNumber(
             Math.floor((time / (60 * 1000)) % 60)
-        )}:${formatNumber(Math.floor((time / 1000) % 60))}:${
+        )} : ${formatNumber(Math.floor((time / 1000) % 60))} : ${
             milisec < 100
                 ? "0" + milisec
                 : milisec < 10
@@ -65,7 +78,7 @@ export default function Chronometer() {
     function step() {
         if (!paused) {
             setStepBox(true);
-            setArrStep((prev) => [...prev, timeForBox()]);
+            setArrStep((prev) => [...prev, timeForBox()])
         }
     }
 
@@ -122,12 +135,7 @@ export default function Chronometer() {
                 }}
             >
                 <ChronClock
-                    // minutes={formatNumber(Math.floor(initialTime / 60000) % 60)}
-                    // seconds={formatNumber(Math.floor((initialTime / 1000) % 60))}
-                    // milisec={formatNumber((initialTime / 10) % 100)}
-                    minutes={formatNumber(
-                        Math.floor((time / (60 * 1000)) % 60)
-                    )}
+                    minutes={formatNumber(Math.floor((time / (60 * 1000)) % 60))}
                     seconds={formatNumber(Math.floor((time / 1000) % 60))}
                     milisec={formatNumber(Math.floor((time / 10) % 100))}
                 />
@@ -137,7 +145,7 @@ export default function Chronometer() {
                     </div>
                 ) : (
                     <div style={{ display: "flex", gap: "15px" }}>
-                        <div onClick={() => setInitialTime(0)}>
+                        <div onClick={() => restart()}>
                             <Button theme="red" text="Recomeçar" />
                         </div>
                         <div onClick={() => step()}>
