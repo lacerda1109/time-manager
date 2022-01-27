@@ -3,7 +3,7 @@ import { palette } from '../theme/palette'
 import { AiOutlineClose } from 'react-icons/ai'
 import Button from './Button'
 
-export default function Modal(props) {
+export default function ConfigModal(props) {
     const modal = useRef()
 
     return (

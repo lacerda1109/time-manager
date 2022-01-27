@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import Page from '../components/Page'
 import Clock from '../components/Clock'
 import Button from '../components/Button'
-import Modal from '../components/Modal'
+import ConfigModal from '../components/ConfigModal'
 import SelectNumbers from '../components/SelectNumbers'
 import { palette } from '../theme/palette'
 import { formatNumber } from '../utils/functions'
@@ -228,7 +228,7 @@ export default function Alarm() {
 
     return (
         <>
-            <Modal
+            <ConfigModal
                 openModal={openModal}
                 setOpenModal={setOpenModal}
                 headerTitle="Configuração do alarme"
