@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import Page from '../components/Page'
 import Clock from '../components/Clock'
 import Button from '../components/Button'

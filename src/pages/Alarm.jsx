@@ -6,6 +6,8 @@ import ConfigModal from '../components/ConfigModal'
 import SelectNumbers from '../components/SelectNumbers'
 import { palette } from '../theme/palette'
 import { formatNumber } from '../utils/functions'
+import ConfirmModal from '../components/ConfirmModal'
+import sound1 from '../assets/sounds/sound1.mp3'
 
 export default function Alarm() {
     // CONFIGURAÇÃO DE EXIBIÇÃO DA DATA ---------------------------------------------------------------------
@@ -109,7 +111,8 @@ export default function Alarm() {
             let s = d.getSeconds()
 
             if (h === selectHour && m === selectMinute && s === 0) {
-                console.log('DESPERTAR')
+                setConfirmModal(true)
+                audio.play()
                 setDefined(false)
                 setCancelAlarm(true)
             }
@@ -126,6 +129,10 @@ export default function Alarm() {
             stopAlarm()
         }
     }, [cancelAlarm])
+
+    // SONS -------------------------------------------------------------------------------------------------
+    let [audio, setAudio] = useState(new Audio(sound1))
+    audio.volume = 0.2
 
     // MODAL CONFIG -----------------------------------------------------------------------------------------
     const [openModal, setOpenModal] = useState(false)
@@ -226,6 +233,31 @@ export default function Alarm() {
         </div>
     )
 
+    // CONFIRMAÇÃO ------------------------------------------------------------------------------------------
+    const [confirmModal, setConfirmModal] = useState(false)
+    function closeConfirmModal() {
+        setConfirmModal(false)
+        audio.pause()
+        setAudio(new Audio(sound1))
+    }
+    let confirmModalBody = (
+        <div
+            style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: '10px'
+            }}
+        >
+            <label>Seu alarme {configTitle !== '' ? `"${configTitle}" ` : ''}foi despertado.</label>
+            <div
+                onClick={() => closeConfirmModal()}
+            >
+                <Button text="Finalizar" theme="red" />
+            </div>
+        </div>
+    )
+
     return (
         <>
             <ConfigModal
@@ -235,6 +267,12 @@ export default function Alarm() {
                 body={modalBody}
                 finalButtonText="Definir"
                 finalButtonFunction={finalButtonFunction}
+            />
+            <ConfirmModal
+                openModal={confirmModal}
+                closeConfirmModal={closeConfirmModal}
+                headerTitle="Fim do alarme"
+                body={confirmModalBody}
             />
             <Page>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px'}}>
