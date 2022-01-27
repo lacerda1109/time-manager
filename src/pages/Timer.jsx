@@ -6,7 +6,7 @@ import ConfigModal from '../components/ConfigModal'
 import ConfirmModal from '../components/ConfirmModal'
 import SelectNumbers from '../components/SelectNumbers'
 import { formatNumber } from '../utils/functions'
-import sound1 from '../media/sounds/sound1.mp3'
+import sound1 from '../assets/sounds/sound1.mp3'
 
 export default function Timer() {
     // CONFIGURAÇÕES DO MODAL -------------------------------------------------------------------------------
