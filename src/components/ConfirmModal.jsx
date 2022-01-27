@@ -22,7 +22,7 @@ export default function ConfirmModal(props) {
             ref={modal}
             onClick={(e) => {
                 if (e.target === modal.current) {
-                    props.setOpenModal(false)
+                    props.closeConfirmModal()
                 } else {
                     return
                 }
@@ -45,7 +45,7 @@ export default function ConfirmModal(props) {
                     }}
                 >
                     <label>{props.headerTitle}</label>
-                    <AiOutlineClose style={{ cursor:'pointer' }} onClick={() => props.setOpenModal(false)} />
+                    <AiOutlineClose style={{ cursor:'pointer' }} onClick={() => props.closeConfirmModal()} />
                 </div>
                 <div // MODAL BODY
                     style={{

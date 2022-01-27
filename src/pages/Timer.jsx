@@ -100,7 +100,7 @@ export default function Timer() {
         if (time === 0) {
             setPaused(true)
             setStarted(false)
-            console.log('DESPERTAR')
+            setConfirmModal(true)
         }
     }, [time])
     
@@ -119,7 +119,28 @@ export default function Timer() {
         setTime((selectHour * 3600000) + (selectMinutes * 60000) + (selectSeconds * 1000))
     }
 
-    const [confirmModal, setConfirmModal] = useState(true)
+    // CONFIRMAÇÃO ------------------------------------------------------------------------------------------
+    const [confirmModal, setConfirmModal] = useState(false)
+    function closeConfirmModal() {
+        setConfirmModal(false)
+    }
+    let confirmModalBody = (
+        <div
+            style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: '10px'
+            }}
+        >
+            <label>Seu timer {timerTitle !== '' ? timerTitle + ' ' : ''}chegou ao fim!</label>
+            <div
+                onClick={() => closeConfirmModal()}
+            >
+                <Button text="Finalizar" theme="red" />
+            </div>
+        </div>
+    )
 
     return (
         <>
@@ -133,8 +154,9 @@ export default function Timer() {
             />
             <ConfirmModal
                 openModal={confirmModal}
-                setOpenModal={setConfirmModal}
+                closeConfirmModal={closeConfirmModal}
                 headerTitle="Fim do timer"
+                body={confirmModalBody}
             />
             <Page>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px'}}>
