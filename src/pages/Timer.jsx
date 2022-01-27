@@ -3,6 +3,7 @@ import Page from '../components/Page'
 import Clock from '../components/Clock'
 import Button from '../components/Button'
 import ConfigModal from '../components/ConfigModal'
+import ConfirmModal from '../components/ConfirmModal'
 import SelectNumbers from '../components/SelectNumbers'
 import { formatNumber } from '../utils/functions'
 
@@ -118,6 +119,8 @@ export default function Timer() {
         setTime((selectHour * 3600000) + (selectMinutes * 60000) + (selectSeconds * 1000))
     }
 
+    const [confirmModal, setConfirmModal] = useState(true)
+
     return (
         <>
             <ConfigModal
@@ -127,6 +130,11 @@ export default function Timer() {
                 body={modalBody}
                 finalButtonText="Começar"
                 finalButtonFunction={startTimer}
+            />
+            <ConfirmModal
+                openModal={confirmModal}
+                setOpenModal={setConfirmModal}
+                headerTitle="Fim do timer"
             />
             <Page>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px'}}>
