@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Page from '../components/Page'
 import Clock from '../components/Clock'
 import Button from '../components/Button'
@@ -6,6 +6,7 @@ import ConfigModal from '../components/ConfigModal'
 import ConfirmModal from '../components/ConfirmModal'
 import SelectNumbers from '../components/SelectNumbers'
 import { formatNumber } from '../utils/functions'
+import sound1 from '../media/sounds/sound1.mp3'
 
 export default function Timer() {
     // CONFIGURAÇÕES DO MODAL -------------------------------------------------------------------------------
@@ -66,6 +67,10 @@ export default function Timer() {
         </div>
     )
 
+    // SONS -------------------------------------------------------------------------------------------------
+    let [audio, setAudio] = useState(new Audio(sound1))
+    audio.volume = 0.2
+
     // CONFIGURAÇÕES DOS BOTÕES E INTERFACE -----------------------------------------------------------------
     const [started, setStarted] = useState(false)
     const [paused, setPaused] = useState(true)
@@ -97,10 +102,11 @@ export default function Timer() {
     }, [paused])
 
     useEffect(() => {
-        if (time === 0) {
+        if (time === 0) { // DESPERTAR
             setPaused(true)
             setStarted(false)
             setConfirmModal(true)
+            audio.play()
         }
     }, [time])
     
@@ -123,6 +129,8 @@ export default function Timer() {
     const [confirmModal, setConfirmModal] = useState(false)
     function closeConfirmModal() {
         setConfirmModal(false)
+        audio.pause()
+        setAudio(new Audio(sound1))
     }
     let confirmModalBody = (
         <div
@@ -133,7 +141,7 @@ export default function Timer() {
                 gap: '10px'
             }}
         >
-            <label>Seu timer {timerTitle !== '' ? timerTitle + ' ' : ''}chegou ao fim!</label>
+            <label>Seu timer {timerTitle !== '' ? timerTitle + ' ' : ''}chegou ao fim.</label>
             <div
                 onClick={() => closeConfirmModal()}
             >
