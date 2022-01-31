@@ -274,19 +274,21 @@ export default function Alarm() {
                 headerTitle="Fim do alarme"
                 body={confirmModalBody}
             />
-            <Page>
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px'}}>
-                    <p><i>{weekDay}, {monthDay} de {month} de {year}</i></p>
-                    <div>
-                        <Clock hour={formatNumber(hour)} minutes={formatNumber(minutes)} seconds={formatNumber(seconds)} />
-                    </div>
-                    {!defined ? (
-                        <div onClick={() => setOpenModal(true)}>
-                            <Button theme="default" text="Configurar alarme" />
+            <div>
+                <Page>
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px'}}>
+                        <p><i>{weekDay}, {monthDay} de {month} de {year}</i></p>
+                        <div>
+                            <Clock hour={formatNumber(hour)} minutes={formatNumber(minutes)} seconds={formatNumber(seconds)} />
                         </div>
-                    ) : alarmBox}
-                </div>
-            </Page>
+                        {!defined ? (
+                            <div onClick={() => setOpenModal(true)}>
+                                <Button theme="default" text="Configurar alarme" />
+                            </div>
+                        ) : alarmBox}
+                    </div>
+                </Page>
+            </div>
         </>
     )
 }

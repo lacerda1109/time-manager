@@ -125,42 +125,44 @@ export default function Chronometer() {
     );
 
     return (
-        <Page>
-            <div
-                style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    gap: "20px",
-                }}
-            >
-                <ChronClock
-                    minutes={formatNumber(Math.floor((time / (60 * 1000)) % 60))}
-                    seconds={formatNumber(Math.floor((time / 1000) % 60))}
-                    milisec={formatNumber(Math.floor((time / 10) % 100))}
-                />
-                {!started ? (
-                    <div onClick={() => startChronometer()}>
-                        <Button theme="default" text="Começar" />
-                    </div>
-                ) : (
-                    <div style={{ display: "flex", gap: "15px" }}>
-                        <div onClick={() => restart()}>
-                            <Button theme="red" text="Recomeçar" />
+        <div>
+            <Page>
+                <div
+                    style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        gap: "20px",
+                    }}
+                >
+                    <ChronClock
+                        minutes={formatNumber(Math.floor((time / (60 * 1000)) % 60))}
+                        seconds={formatNumber(Math.floor((time / 1000) % 60))}
+                        milisec={formatNumber(Math.floor((time / 10) % 100))}
+                    />
+                    {!started ? (
+                        <div onClick={() => startChronometer()}>
+                            <Button theme="default" text="Começar" />
                         </div>
-                        <div onClick={() => step()}>
-                            <Button theme="orange" text="Volta" />
+                    ) : (
+                        <div style={{ display: "flex", gap: "15px" }}>
+                            <div onClick={() => restart()}>
+                                <Button theme="red" text="Recomeçar" />
+                            </div>
+                            <div onClick={() => step()}>
+                                <Button theme="orange" text="Volta" />
+                            </div>
+                            <div onClick={() => pause()}>
+                                <Button
+                                    theme="default"
+                                    text={paused ? "Continuar" : "Pausar"}
+                                />
+                            </div>
                         </div>
-                        <div onClick={() => pause()}>
-                            <Button
-                                theme="default"
-                                text={paused ? "Continuar" : "Pausar"}
-                            />
-                        </div>
-                    </div>
-                )}
-                {stepBox ? stepBoxLayout : null}
-            </div>
-        </Page>
+                    )}
+                    {stepBox ? stepBoxLayout : null}
+                </div>
+            </Page>
+        </div>
     );
 }

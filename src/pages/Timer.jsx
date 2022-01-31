@@ -166,39 +166,41 @@ export default function Timer() {
                 headerTitle="Fim do timer"
                 body={confirmModalBody}
             />
-            <Page>
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px'}}>
-                    {timerTitle !== '' ? (<p style={{...timerTitleStyle}}>{timerTitle}</p>) : null}
-                    <Clock
-                        hour={formatNumber(Math.floor(time / (60 * 60000) % 60))}
-                        minutes={formatNumber(Math.floor((time / (60000)) % 60))}
-                        seconds={formatNumber((time / 1000) % 60)}
-                    />
-                    <div style={{display: 'flex', gap: '15px'}}>
-                        <div
-                            onClick={() => setOpenModal(true)}
-                        >
-                            <Button text="Configurar timer" theme="secondary" />
-                        </div>
-                        {!started ? (
-                            <div onClick={() => {
-                                startTimer()
-                            }}>
-                                <Button text="Começar" theme="default" />
+            <div>
+                <Page>
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px'}}>
+                        {timerTitle !== '' ? (<p style={{...timerTitleStyle}}>{timerTitle}</p>) : null}
+                        <Clock
+                            hour={formatNumber(Math.floor(time / (60 * 60000) % 60))}
+                            minutes={formatNumber(Math.floor((time / (60000)) % 60))}
+                            seconds={formatNumber((time / 1000) % 60)}
+                        />
+                        <div style={{display: 'flex', gap: '15px'}}>
+                            <div
+                                onClick={() => setOpenModal(true)}
+                            >
+                                <Button text="Configurar timer" theme="secondary" />
                             </div>
-                        ) : (
-                            <>
-                                <div onClick={() => restartTimer()}>
-                                    <Button text="Recomeçar" theme="red" />
+                            {!started ? (
+                                <div onClick={() => {
+                                    startTimer()
+                                }}>
+                                    <Button text="Começar" theme="default" />
                                 </div>
-                                <div onClick={() => pauseTimer()}>
-                                    <Button text={paused ? "Continuar" : "Pausar"} theme="default" />
-                                </div>
-                            </>
-                        )}
+                            ) : (
+                                <>
+                                    <div onClick={() => restartTimer()}>
+                                        <Button text="Recomeçar" theme="red" />
+                                    </div>
+                                    <div onClick={() => pauseTimer()}>
+                                        <Button text={paused ? "Continuar" : "Pausar"} theme="default" />
+                                    </div>
+                                </>
+                            )}
+                        </div>
                     </div>
-                </div>
-            </Page>
+                </Page>
+            </div>
         </>
     )
 }
