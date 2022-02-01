@@ -35,8 +35,14 @@
 .navLinksMobile {
     display: none;
     flex-direction: column;
+    justify-content: center;
     text-align: center;
     gap: 10px;
+}
+
+.linkWrapper {
+    display: flex;
+    flex-direction: column;
 }
 
 .navLinks {

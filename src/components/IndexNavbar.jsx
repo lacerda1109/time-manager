@@ -51,12 +51,18 @@ export default function IndexNavbar(props) {
                                 />
                             </div>
                             <div ref={container} className={openMenu ? 'navLinksMobile showMobile' : 'navLinksMobile'}>
-                                <NavButton path="/app/" text="Timer" />
-                                <NavButton
-                                    path="cronometro"
-                                    text="Cronômetro"
-                                />
-                                <NavButton path="alarme" text="Alarme" />
+                                <div className="linkWrapper" onClick={() => setOpenMenu(false)}>
+                                    <NavButton path="/app/" text="Timer" />
+                                </div>
+                                <div className="linkWrapper" onClick={() => setOpenMenu(false)}>
+                                    <NavButton
+                                        path="cronometro"
+                                        text="Cronômetro"
+                                    />
+                                </div>
+                                <div className="linkWrapper" onClick={() => setOpenMenu(false)}>
+                                    <NavButton path="alarme" text="Alarme" />
+                                </div>
                             </div>
                         </div>) : null}
                     </div>
