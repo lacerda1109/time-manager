@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Outlet } from "react-router-dom";
 import { palette } from "../theme/palette";
 import {
@@ -28,6 +28,13 @@ export default function IndexNavbar(props) {
         setOpenMenu(!openMenu)
     }
 
+    const container = useRef()
+    document.addEventListener('mousedown', (e) => {
+        if (container.current && !container.current.contains(e.target)) {
+            setOpenMenu(false)
+        }
+    })
+
     return (
         <div style={{ height: "100vh" }}>
             <div style={{ borderBottom: `2px solid ${palette.defaultColor}` }}>
@@ -43,7 +50,7 @@ export default function IndexNavbar(props) {
                                     style={{ fill: "#fff", fontSize: "15px" }}
                                 />
                             </div>
-                            <div className={openMenu ? 'navLinksMobile showMobile' : 'navLinksMobile'}>
+                            <div ref={container} className={openMenu ? 'navLinksMobile showMobile' : 'navLinksMobile'}>
                                 <NavButton path="/app/" text="Timer" />
                                 <NavButton
                                     path="cronometro"
