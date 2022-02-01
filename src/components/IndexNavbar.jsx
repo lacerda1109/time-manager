@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
 import { palette } from "../theme/palette";
 import {
@@ -5,10 +6,11 @@ import {
     AiFillGithub,
     AiFillLinkedin,
     AiFillInfoCircle,
+    AiOutlineMenu,
 } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import "./IndexNavbar.css";
-import NavButton from './NavButton'
+import NavButton from "./NavButton";
 
 export default function IndexNavbar(props) {
     let navbarStyle = {
@@ -18,19 +20,41 @@ export default function IndexNavbar(props) {
         justifyContent: "space-between",
         alignItems: "center",
         padding: "0px 20px",
-        height: '65px'
+        height: "65px",
     };
 
+    const [openMenu, setOpenMenu] = useState(false)
+    function handleMenu() {
+        setOpenMenu(!openMenu)
+    }
+
     return (
-        <div style={{height: '100vh'}}>
+        <div style={{ height: "100vh" }}>
             <div style={{ borderBottom: `2px solid ${palette.defaultColor}` }}>
                 <div style={{ ...navbarStyle }}>
-                    <Link to="/">
-                        <AiFillHome className="navbarIcon" />
-                    </Link>
+                    <div className="navPositioner">
+                        <Link to="/">
+                            <AiFillHome className="navbarIcon" />
+                        </Link>
 
+                        {props.nav ? (<div>
+                            <div className="mobileIcon" onClick={handleMenu}>
+                                <AiOutlineMenu
+                                    style={{ fill: "#fff", fontSize: "15px" }}
+                                />
+                            </div>
+                            <div className={openMenu ? 'navLinksMobile showMobile' : 'navLinksMobile'}>
+                                <NavButton path="/app/" text="Timer" />
+                                <NavButton
+                                    path="cronometro"
+                                    text="Cronômetro"
+                                />
+                                <NavButton path="alarme" text="Alarme" />
+                            </div>
+                        </div>) : null}
+                    </div>
                     {props.nav ? (
-                        <div style={{display: 'flex', gap: '15px'}}>
+                        <div className="navLinks">
                             <NavButton path="/app/" text="Timer" />
                             <NavButton path="cronometro" text="Cronômetro" />
                             <NavButton path="alarme" text="Alarme" />

@@ -8,3 +8,60 @@
     color: #1BC6B4;
     transition: color .5s;
 }
+
+.navPositioner {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.mobileIcon {
+    display: none;
+    background-color: #4C555C;
+    padding: 8px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color .5s;
+    position: relative;
+}
+
+.mobileIcon:hover {
+    background-color: #3f474d;
+    transition: background-color .5s;
+}
+
+.navLinksMobile {
+    display: none;
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+}
+
+.navLinks {
+    display: flex;
+    gap: 15px;
+}
+
+@media screen and (max-width: 650px) {
+    .mobileIcon {
+        display: flex;
+    }
+
+    .navLinksMobile {
+        position: absolute;
+        margin-top: 10px;
+        border-radius: 4px;
+        background-color: #3f474d;
+        padding: 8px;
+    }
+
+    .showMobile {
+        display: flex;
+    }
+
+    .navLinks {
+        display: none;
+    }
+}
