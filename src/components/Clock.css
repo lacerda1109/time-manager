@@ -1,0 +1,36 @@
+.clockWrapper {
+    display: flex;
+    gap: 30px;
+}
+
+.number {
+    font-size: 130px;
+    font-weight: 900;
+}
+
+.text {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+@media screen and (max-width: 700px) {
+    .number {
+        font-size: 90px;
+    }
+    .text {
+        font-size: 13px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .clockWrapper {
+        gap: 15px;
+    }
+
+    .number {
+        font-size: 50px;
+    }
+    .text {
+        font-size: 7px;
+    }
+}

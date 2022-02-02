@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { palette } from '../theme/palette'
+import './Button.css'
 
 export default function Button(props) {
     let buttonStyle = {
@@ -11,7 +12,7 @@ export default function Button(props) {
         cursor: 'pointer',
         transition: 'background-color .5s',
         backgroundColor: palette[props.theme].normal.background,
-        color: palette[props.theme].normal.text
+        color: palette[props.theme].normal.text,
     }
 
     let hoverStyle = {
@@ -23,6 +24,7 @@ export default function Button(props) {
 
     return (
         <button
+            className='button'
             onMouseEnter={() => setHover(true)}
             onMouseOut={() => setHover(false)}
             style={{
