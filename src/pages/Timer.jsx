@@ -142,7 +142,7 @@ export default function Timer() {
                 gap: '10px'
             }}
         >
-            <label>Seu timer {timerTitle !== '' ? timerTitle + ' ' : ''}chegou ao fim.</label>
+            <label>Seu timer {timerTitle !== '' ? `"${timerTitle}" ` : ''}chegou ao fim.</label>
             <div
                 onClick={() => closeConfirmModal()}
             >
