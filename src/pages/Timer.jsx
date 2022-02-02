@@ -7,6 +7,7 @@ import ConfirmModal from '../components/ConfirmModal'
 import SelectNumbers from '../components/SelectNumbers'
 import { formatNumber } from '../utils/functions'
 import sound1 from '../assets/sounds/sound1.mp3'
+import './Timer.css'
 
 export default function Timer() {
     // CONFIGURAÇÕES DO MODAL -------------------------------------------------------------------------------
@@ -175,7 +176,7 @@ export default function Timer() {
                             minutes={formatNumber(Math.floor((time / (60000)) % 60))}
                             seconds={formatNumber((time / 1000) % 60)}
                         />
-                        <div style={{display: 'flex', gap: '15px'}}>
+                        <div className='timerButtons'>
                             <div
                                 onClick={() => setOpenModal(true)}
                             >

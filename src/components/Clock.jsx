@@ -1,4 +1,4 @@
-import './Clock.css'
+import './ClockStyle.css'
 
 export default function Clock(props) {
     return (

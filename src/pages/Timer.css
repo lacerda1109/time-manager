@@ -1,0 +1,16 @@
+.timerButtons {
+    display: flex;
+    gap: 15px;
+}
+
+@media screen and (max-width: 500px) {
+    .timerButtons {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .timerButtons * {
+        width: 100%;
+    }
+}

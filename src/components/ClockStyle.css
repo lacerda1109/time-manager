@@ -1,6 +1,7 @@
 .clockWrapper {
     display: flex;
     gap: 30px;
+    align-items: center;
 }
 
 .number {
@@ -13,6 +14,11 @@
     font-weight: 500;
 }
 
+.lastNumber {
+    font-size: 50px;
+    font-weight: 900;
+}
+
 @media screen and (max-width: 700px) {
     .number {
         font-size: 90px;
@@ -20,17 +26,22 @@
     .text {
         font-size: 13px;
     }
+    .lastNumber {
+        font-size: 34px;
+    }
 }
 
 @media screen and (max-width: 500px) {
     .clockWrapper {
         gap: 15px;
     }
-
     .number {
         font-size: 50px;
     }
     .text {
         font-size: 7px;
+    }
+    .lastNumber {
+        font-size: 18px;
     }
 }

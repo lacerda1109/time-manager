@@ -4,6 +4,7 @@ import Page from "../components/Page";
 import ChronClock from "../components/ChronClock";
 import Button from "../components/Button";
 import { formatNumber } from "../utils/functions";
+import './Chronometer.css'
 
 export default function Chronometer() {
     const [started, setStarted] = useState(false);
@@ -145,7 +146,7 @@ export default function Chronometer() {
                             <Button theme="default" text="Começar" />
                         </div>
                     ) : (
-                        <div style={{ display: "flex", gap: "15px" }}>
+                        <div className="chronometerButtons">
                             <div onClick={() => restart()}>
                                 <Button theme="red" text="Recomeçar" />
                             </div>
