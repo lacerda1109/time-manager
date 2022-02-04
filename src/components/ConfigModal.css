@@ -1,0 +1,15 @@
+@media screen and (max-width: 400px) {
+    .modalWrapper {
+        display: block;
+    }
+    
+    .modal {
+        width: 100% !important;
+        height: 100%;
+        overflow: auto;
+    }
+    
+    .modalBody {
+        padding: 25px 10px !important;
+    }
+}

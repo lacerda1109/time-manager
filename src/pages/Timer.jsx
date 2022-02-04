@@ -39,13 +39,15 @@ export default function Timer() {
                 display: 'flex',
                 flexDirection: 'column',
                 gap: '20px',
-                alignItems: 'center'
+                alignItems: 'center',
             }}
         >
             <div
                 style={{
                     display: 'flex',
-                    gap: '15px'
+                    gap: '15px',
+                    justifyContent: 'center',
+                    flexWrap: 'wrap'
                 }}
             >
                 <SelectNumbers title="H" state={selectHour} setState={setSelectHour} options={arrHour} />

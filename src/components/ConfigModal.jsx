@@ -2,12 +2,14 @@ import { useRef } from 'react'
 import { palette } from '../theme/palette'
 import { AiOutlineClose } from 'react-icons/ai'
 import Button from './Button'
+import './ConfigModal.css'
 
 export default function ConfigModal(props) {
     const modal = useRef()
 
     return (
         <div
+            className="modalWrapper"
             style={{
                 width: '100%',
                 height: '100%',
@@ -30,9 +32,10 @@ export default function ConfigModal(props) {
             }}
         >
             <div
+                className="modal"
                 style={{
                     width: '400px',
-                    backgroundColor: palette.bgSecondaryColor
+                    backgroundColor: palette.bgSecondaryColor,
                 }}
             >
                 <div // MODAL HEADER
@@ -49,8 +52,9 @@ export default function ConfigModal(props) {
                     <AiOutlineClose style={{ cursor:'pointer' }} onClick={() => props.setOpenModal(false)} />
                 </div>
                 <div // MODAL BODY
+                    className="modalBody"
                     style={{
-                        padding: '25px'
+                        padding: '25px',
                     }}
                 >
                     {props.body}
