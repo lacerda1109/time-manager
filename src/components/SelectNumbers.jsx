@@ -16,7 +16,7 @@ export default function SelectNumbers(props) {
                 style={{ display: 'flex', marginTop: '10px' }}
             >
                 <div
-                    className="button"
+                    className="arrowButton"
                     style={{
                         backgroundColor: palette.secondaryColor,
                         display: 'flex',
@@ -42,7 +42,7 @@ export default function SelectNumbers(props) {
                     {(props.options).map((el, i) => (<option key={i} value={el}>{formatNumber(el)}</option>))}
                 </select>
                 <div
-                    className="button"
+                    className="arrowButton"
                     style={{
                         backgroundColor: palette.secondaryColor,
                         display: 'flex',
