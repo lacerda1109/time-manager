@@ -31,6 +31,7 @@ export default function ConfirmModal(props) {
             <div
                 style={{
                     width: '400px',
+                    margin: '0 15px',
                     backgroundColor: palette.bgSecondaryColor
                 }}
             >
@@ -49,7 +50,8 @@ export default function ConfirmModal(props) {
                 </div>
                 <div // MODAL BODY
                     style={{
-                        padding: '25px'
+                        padding: '25px',
+                        textAlign: 'center'
                     }}
                 >
                     {props.body}
