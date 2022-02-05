@@ -23,48 +23,103 @@ export default function IndexNavbar(props) {
         height: "65px",
     };
 
-    const [openMenu, setOpenMenu] = useState(false)
+    const [openMenu, setOpenMenu] = useState(false);
     function handleMenu() {
         setOpenMenu(!openMenu)
     }
 
-    const container = useRef()
-    document.addEventListener('mousedown', (e) => {
+    const container = useRef();
+    document.addEventListener("mousedown", (e) => {
         if (container.current && !container.current.contains(e.target)) {
-            setOpenMenu(false)
+            setOpenMenu(false);
         }
-    })
+    });
 
     return (
         <div style={{ height: "100vh" }}>
             <div style={{ borderBottom: `2px solid ${palette.defaultColor}` }}>
                 <div style={{ ...navbarStyle }}>
-                    <div className="navPositioner">
+                    <div
+                        style={{
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "15px",
+                        }}
+                    >
                         <Link to="/">
                             <AiFillHome className="navbarIcon" />
                         </Link>
 
-                        {props.nav ? (<div>
-                            <div className="mobileIcon" onClick={handleMenu}>
-                                <AiOutlineMenu
-                                    style={{ fill: "#fff", fontSize: "15px" }}
-                                />
-                            </div>
-                            <div ref={container} className={openMenu ? 'navLinksMobile showMobile' : 'navLinksMobile'}>
-                                <div className="linkWrapper" onClick={() => setOpenMenu(false)}>
-                                    <NavButton path="/app/" text="Timer" />
-                                </div>
-                                <div className="linkWrapper" onClick={() => setOpenMenu(false)}>
-                                    <NavButton
-                                        path="cronometro"
-                                        text="Cronômetro"
+                        {props.nav ? (
+                            <div>
+                                <div
+                                    className="mobileIcon"
+                                    onClick={handleMenu}
+                                    style={{
+                                        display: "none",
+                                        backgroundColor: palette.secondaryColor,
+                                        padding: "8px",
+                                        justifyContent: "center",
+                                        alignItems: "center",
+                                        borderRadius: "4px",
+                                        cursor: "pointer",
+                                        position: "relative",
+                                    }}
+                                >
+                                    <AiOutlineMenu
+                                        style={{
+                                            fill: "#fff",
+                                            fontSize: "15px",
+                                        }}
                                     />
                                 </div>
-                                <div className="linkWrapper" onClick={() => setOpenMenu(false)}>
-                                    <NavButton path="alarme" text="Alarme" />
-                                </div>
+                                {openMenu && (
+                                    <div
+                                        ref={container}
+                                        style={{
+                                            display: "flex",
+                                            flexDirection: "column",
+                                            justifyContent: "center",
+                                            textAlign: "center",
+                                            gap: "10px",
+                                            position: "absolute",
+                                            marginTop: "10px",
+                                            borderRadius: "4px",
+                                            backgroundColor: "#3f474d",
+                                            padding: "8px",
+                                        }}
+                                    >
+                                        <div
+                                            className="linkWrapper"
+                                            onClick={() => setOpenMenu(false)}
+                                        >
+                                            <NavButton
+                                                path="/app/"
+                                                text="Timer"
+                                            />
+                                        </div>
+                                        <div
+                                            className="linkWrapper"
+                                            onClick={() => setOpenMenu(false)}
+                                        >
+                                            <NavButton
+                                                path="cronometro"
+                                                text="Cronômetro"
+                                            />
+                                        </div>
+                                        <div
+                                            className="linkWrapper"
+                                            onClick={() => setOpenMenu(false)}
+                                        >
+                                            <NavButton
+                                                path="alarme"
+                                                text="Alarme"
+                                            />
+                                        </div>
+                                    </div>
+                                )}
                             </div>
-                        </div>) : null}
+                        ) : null}
                     </div>
                     {props.nav ? (
                         <div className="navLinks">

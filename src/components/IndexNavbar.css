@@ -1,43 +1,12 @@
 .navbarIcon {
     color: #fff;
     font-size: 23px;
-    transition: color .5s;
+    transition: color 0.5s;
 }
 
 .navbarIcon:hover {
-    color: #1BC6B4;
-    transition: color .5s;
-}
-
-.navPositioner {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.mobileIcon {
-    display: none;
-    background-color: #4C555C;
-    padding: 8px;
-    justify-content: center;
-    align-items: center;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color .5s;
-    position: relative;
-}
-
-.mobileIcon:hover {
-    background-color: #3f474d;
-    transition: background-color .5s;
-}
-
-.navLinksMobile {
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    gap: 10px;
+    color: #1bc6b4;
+    transition: color 0.5s;
 }
 
 .linkWrapper {
@@ -52,15 +21,7 @@
 
 @media screen and (max-width: 700px) {
     .mobileIcon {
-        display: flex;
-    }
-
-    .navLinksMobile {
-        position: absolute;
-        margin-top: 10px;
-        border-radius: 4px;
-        background-color: #3f474d;
-        padding: 8px;
+        display: flex !important;
     }
 
     .showMobile {
