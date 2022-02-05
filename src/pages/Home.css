@@ -20,6 +20,10 @@
     .buttons {
         flex-direction: column;
     }
+
+    .buttons * {
+        width: 100%;
+    }
 }
 
 @media screen and (max-width: 900px) {
